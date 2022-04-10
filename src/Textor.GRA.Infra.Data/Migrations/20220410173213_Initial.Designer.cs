@@ -9,7 +9,7 @@ using Textor.GRA.Infra.Data.Context;
 namespace Textor.GRA.Infra.Data.Migrations
 {
     [DbContext(typeof(GeneralContext))]
-    [Migration("20220410155645_Initial")]
+    [Migration("20220410173213_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,11 @@ namespace Textor.GRA.Infra.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Winner")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Year")
                         .HasColumnType("INTEGER");

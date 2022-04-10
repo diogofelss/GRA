@@ -23,7 +23,11 @@ namespace Textor.GRA.Infra.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Winner")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Year")
                         .HasColumnType("INTEGER");

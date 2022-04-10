@@ -10,7 +10,7 @@ namespace Textor.GRA.Infra.Data.Mappings
         {
             builder.HasKey(c => c.ID);
 
-            builder.Property(c => c.Name);
+            builder.Property(c => c.Name).HasMaxLength(500);
 
             builder.HasMany(c => c.Movies).WithOne(c => c.Producer).HasForeignKey(c => c.ProducerID);
         }

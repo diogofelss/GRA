@@ -8,6 +8,7 @@ namespace Textor.GRA.Domain.Entities
     {
         public int Year { get; set; }
         public string Title { get; set; }
+        public bool Winner { get; set; }
 
         #region Navigation
 

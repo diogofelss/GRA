@@ -13,7 +13,8 @@ namespace Textor.GRA.Infra.Data.Migrations
                 {
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
                     Year = table.Column<int>(type: "INTEGER", nullable: false),
-                    Title = table.Column<string>(type: "TEXT", nullable: true)
+                    Title = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
+                    Winner = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
