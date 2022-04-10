@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Infra.Data.Mappings;
 

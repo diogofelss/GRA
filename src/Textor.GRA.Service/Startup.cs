@@ -5,11 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Linq;
-using System.Reflection;
-using Textor.GRA.Application.Automapper;
-using Textor.GRA.Domain.Entities;
+using System.Collections.Generic;
+using Textor.GRA.Application.DTOs;
+using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Infra.CrossCutting.IOC;
 using Textor.GRA.Infra.Data.Context;
 
@@ -57,26 +55,46 @@ namespace Textor.GRA.Service
                 endpoints.MapControllers();
             });
 
-            var scope = app.ApplicationServices.CreateScope();
-            var context = scope.ServiceProvider.GetService<GeneralContext>();
-            ImportarExcel(context);
+            ImportarExcel(app);
         }
 
-        private static void ImportarExcel(GeneralContext context)
+        private static void ImportarExcel(IApplicationBuilder app)
         {
-            if (context.Movies.AsQueryable().Where(c => c.Title == "Star Wars").Any())
-                return;
-
-            var movie = new Movie
+            using (var scope = app.ApplicationServices.CreateScope())
             {
-                ID = Guid.NewGuid(),
-                Year = 1977,
-                Title = "Star Wars"
-            };
+                var csvApplicationService = scope.ServiceProvider.GetService<ICsvApplicationService>();
 
-            var ret1 = context.Movies.Add(movie);
+                var movie1 = new CsvDTO
+                {
+                    Year = 1980,
+                    Title = "Can't Stop the Music",
+                    Studios = "Universal Studios, Associated Film Distribution",
+                    Producers = "Kevin Costner, Lawrence Kasdan and Jim Wilson"
+                };
 
-            var ret2 = context.SaveChanges();
+                var movie2 = new CsvDTO
+                {
+                    Year = 1980,
+                    Title = "Cruising",
+                    Studios = "Lorimar Productions, United Artists",
+                    Producers = "Jerry Weintraub"
+                };
+
+                var movie3 = new CsvDTO
+                {
+                    Year = 1980,
+                    Title = "The Formula",
+                    Studios = "MGM, United Artists",
+                    Producers = "Steve Shagan"
+                };
+
+                var list = new List<CsvDTO>();
+                list.Add(movie1);
+                list.Add(movie2);
+                list.Add(movie3);
+
+                csvApplicationService.Import(list);
+            }
         }
     }
 }

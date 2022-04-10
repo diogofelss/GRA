@@ -6,6 +6,11 @@ namespace Textor.GRA.Domain.Entities
 {
     public class Studio : Entity<Guid>
     {
+        public Studio()
+        {
+            ID = Guid.NewGuid();
+        }
+
         public string Name { get; set; }
 
         #region Navigation

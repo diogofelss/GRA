@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Textor.GRA.Application.DTOs
+﻿namespace Textor.GRA.Application.DTOs
 {
     public class MovieResponseDTO
     {

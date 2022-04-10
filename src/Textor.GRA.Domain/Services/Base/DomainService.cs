@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Textor.GRA.Domain.Entities.Base;
 using Textor.GRA.Domain.Framework.Response;
+using Textor.GRA.Domain.Framework.Response.Enums;
 using Textor.GRA.Domain.Repositories.Base;
 using Textor.GRA.Domain.Services.Interfaces.Base;
 
@@ -19,12 +20,24 @@ namespace Textor.GRA.Domain.Services.Base
 
         public virtual Response Add(TEntity entity)
         {
-            return Repository.Add(entity);
+            Repository.Add(entity);
+
+            return new Response
+            {
+                Message = "",
+                Result = EResult.Success
+            };
         }
 
         public virtual Response AddRange(IList<TEntity> entities)
         {
-            return Repository.AddRange(entities);
+            Repository.AddRange(entities);
+
+            return new Response
+            {
+                Message = "",
+                Result = EResult.Success
+            };
         }
     }
 }

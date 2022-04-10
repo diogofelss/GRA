@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Textor.GRA.Domain.Entities;
-using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Repositories;
-using Textor.GRA.Domain.Repositories.Base;
 using Textor.GRA.Infra.Data.Context;
 using Textor.GRA.Infra.Data.Repositories.Base;
 
@@ -14,27 +12,16 @@ namespace Textor.GRA.Infra.Data.Repositories
     {
         public MovieReadRepository(GeneralContext context) : base(context)
         {
-
         }
 
-        public Movie First()
+        public IQueryable<Movie> Get()
         {
-            return Context.Movies.AsQueryable().FirstOrDefault();
+            return Context.Movies;
         }
 
-        public IList<Movie> GetAll()
+        public IQueryable<Movie> Get(Expression<Func<Movie, bool>> predicate)
         {
-            return Context.Movies.AsQueryable().ToList();
-        }
-
-        Tuple<Response, bool> IReadRepository<Movie>.Any()
-        {
-            throw new NotImplementedException();
-        }
-
-        Tuple<Response, Movie> IReadRepository<Movie>.Get()
-        {
-            throw new NotImplementedException();
+            return Context.Movies.Where(predicate);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using Textor.GRA.Domain.Entities;
-using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Repositories;
-using Textor.GRA.Domain.Repositories.Base;
 using Textor.GRA.Infra.Data.Context;
 using Textor.GRA.Infra.Data.Repositories.Base;
 
@@ -15,19 +15,14 @@ namespace Textor.GRA.Infra.Data.Repositories
 
         }
 
-        public Producer First()
+        public IQueryable<Producer> Get()
         {
-            throw new NotImplementedException();
+            return Context.Producers;
         }
 
-        Tuple<Response, bool> IReadRepository<Producer>.Any()
+        public IQueryable<Producer> Get(Expression<Func<Producer, bool>> predicate)
         {
-            throw new NotImplementedException();
-        }
-
-        Tuple<Response, Producer> IReadRepository<Producer>.Get()
-        {
-            throw new NotImplementedException();
+            return Context.Producers.Where(predicate);
         }
     }
 }

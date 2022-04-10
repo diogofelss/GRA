@@ -6,6 +6,11 @@ namespace Textor.GRA.Domain.Entities
 {
     public class Producer : Entity<Guid>
     {
+        public Producer()
+        {
+            ID = Guid.NewGuid();
+        }
+
         public string Name { get; set; }
 
         #region Navigation

@@ -14,6 +14,6 @@ namespace Textor.GRA.Domain.Services.Interfaces.Base
         where TWriteRepository : IWriteRepository<TEntity>
     {
         Response Add(TEntity entity);
-        Response AddRange(IList<TEntity> entity);
+        Response AddRange(IList<TEntity> entities);
     }
 }

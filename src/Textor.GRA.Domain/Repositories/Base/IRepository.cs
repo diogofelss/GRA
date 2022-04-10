@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using Textor.GRA.Domain.Entities.Interfaces;
 using Textor.GRA.Domain.Framework.Response;
 
@@ -27,12 +29,12 @@ namespace Textor.GRA.Domain.Repositories.Base
     {
         Response Add(TEntity entity);
         Response AddRange(IList<TEntity> entities);
+        Response SaveChanges();
     }
 
     public interface IReadRepository<TEntity> : IReadRepository, IRepository<TEntity> where TEntity : IEntity
     {
-        Tuple<Response, TEntity> Get();
-        Tuple<Response, bool> Any();
-        TEntity First();
+        IQueryable<TEntity> Get();
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
     }
 }

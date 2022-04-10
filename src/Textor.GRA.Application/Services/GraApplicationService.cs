@@ -19,11 +19,13 @@ namespace Textor.GRA.Application.Services
 
         public IList<MovieResponseDTO> GetAll()
         {
-            var result = Repository.GetAll();
+            //var result = Repository.GetAll();
 
-            var movieList = _mapper.Map<IList<MovieResponseDTO>>(result);
+            //var movieList = _mapper.Map<IList<MovieResponseDTO>>(result);
 
-            return movieList;
+            //return movieList;
+
+            return new List<MovieResponseDTO>();
         }
     }
 }
