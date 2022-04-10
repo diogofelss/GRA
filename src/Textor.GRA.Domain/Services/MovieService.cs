@@ -19,7 +19,7 @@ namespace Textor.GRA.Domain.Services
 
         public override Response Add(Movie entity)
         {
-            var ret = Repository.Add(entity);
+            Repository.Add(entity);
 
             return Repository.SaveChanges();
         }

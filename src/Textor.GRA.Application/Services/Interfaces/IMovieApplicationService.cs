@@ -5,7 +5,7 @@ using Textor.GRA.Domain.Framework.Response;
 
 namespace Textor.GRA.Application.Services.Interfaces
 {
-    public interface ICsvApplicationService : IApplicationService
+    public interface IMovieApplicationService : IApplicationService
     {
         Response Import(IList<CsvDTO> csv);
     }

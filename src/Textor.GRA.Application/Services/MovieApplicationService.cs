@@ -11,7 +11,7 @@ using Textor.GRA.Domain.Services.Interfaces;
 
 namespace Textor.GRA.Application.Services
 {
-    public class CsvApplicationService : ApplicationService, ICsvApplicationService
+    public class MovieApplicationService : ApplicationService, IMovieApplicationService
     {
         private readonly IProducerService ProducerService;
         private readonly IStudioService StudioService;
@@ -19,7 +19,7 @@ namespace Textor.GRA.Application.Services
         private readonly IProducerReadRepository ProducerReadRepository;
         private readonly IStudioReadRepository StudioReadRepository;
 
-        public CsvApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository)
+        public MovieApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository)
         {
             ProducerService = producerService;
             StudioService = studioService;

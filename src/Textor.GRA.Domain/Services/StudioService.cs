@@ -17,7 +17,7 @@ namespace Textor.GRA.Domain.Services
             ReadRepository = readRepository;
         }
 
-        public Response Add(Studio entity)
+        public override Response Add(Studio entity)
         {
             return Repository.Add(entity);
         }

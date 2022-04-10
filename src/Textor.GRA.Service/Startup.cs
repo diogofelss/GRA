@@ -60,41 +60,41 @@ namespace Textor.GRA.Service
 
         private static void ImportarExcel(IApplicationBuilder app)
         {
-            using (var scope = app.ApplicationServices.CreateScope())
+            using var scope = app.ApplicationServices.CreateScope();
+            var csvApplicationService = scope.ServiceProvider.GetService<IMovieApplicationService>();
+
+            var movie1 = new CsvDTO
             {
-                var csvApplicationService = scope.ServiceProvider.GetService<ICsvApplicationService>();
+                Year = 1980,
+                Title = "Can't Stop the Music",
+                Studios = "Universal Studios, Associated Film Distribution",
+                Producers = "Kevin Costner, Lawrence Kasdan and Jim Wilson"
+            };
 
-                var movie1 = new CsvDTO
-                {
-                    Year = 1980,
-                    Title = "Can't Stop the Music",
-                    Studios = "Universal Studios, Associated Film Distribution",
-                    Producers = "Kevin Costner, Lawrence Kasdan and Jim Wilson"
-                };
+            var movie2 = new CsvDTO
+            {
+                Year = 1980,
+                Title = "Cruising",
+                Studios = "Lorimar Productions, United Artists",
+                Producers = "Jerry Weintraub"
+            };
 
-                var movie2 = new CsvDTO
-                {
-                    Year = 1980,
-                    Title = "Cruising",
-                    Studios = "Lorimar Productions, United Artists",
-                    Producers = "Jerry Weintraub"
-                };
+            var movie3 = new CsvDTO
+            {
+                Year = 1980,
+                Title = "The Formula",
+                Studios = "MGM, United Artists",
+                Producers = "Steve Shagan"
+            };
 
-                var movie3 = new CsvDTO
-                {
-                    Year = 1980,
-                    Title = "The Formula",
-                    Studios = "MGM, United Artists",
-                    Producers = "Steve Shagan"
-                };
+            var list = new List<CsvDTO>
+            {
+                movie1,
+                movie2,
+                movie3
+            };
 
-                var list = new List<CsvDTO>();
-                list.Add(movie1);
-                list.Add(movie2);
-                list.Add(movie3);
-
-                csvApplicationService.Import(list);
-            }
+            csvApplicationService.Import(list);
         }
     }
 }
