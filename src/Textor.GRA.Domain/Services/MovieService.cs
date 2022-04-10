@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Repositories;
@@ -17,14 +18,14 @@ namespace Textor.GRA.Domain.Services
             ReadRepository = readRepository;
         }
 
-        public override Response Add(Movie entity)
+        public override async Task<Response> Add(Movie entity)
         {
-            Repository.Add(entity);
+            await Repository.Add(entity);
 
-            return Repository.SaveChanges();
+            return await Repository.SaveChanges();
         }
 
-        public override Response AddRange(IList<Movie> entities)
+        public override async Task<Response> AddRange(IList<Movie> entities)
         {
             var registers = new List<Movie>();
 
@@ -36,17 +37,17 @@ namespace Textor.GRA.Domain.Services
 
             var ret1 = base.AddRange(registers);
 
-            return Repository.SaveChanges();
+            return await Repository.SaveChanges();
         }
 
-        public Response AddProducer(MovieProducer producer)
+        public async Task<Response> AddProducer(MovieProducer producer)
         {
-            return Repository.AddProducer(producer);
+            return await Repository.AddProducer(producer);
         }
 
-        public Response AddStudio(MovieStudio studio)
+        public async Task<Response> AddStudio(MovieStudio studio)
         {
-            return Repository.AddStudio(studio);
+            return await Repository.AddStudio(studio);
         }
     }
 }

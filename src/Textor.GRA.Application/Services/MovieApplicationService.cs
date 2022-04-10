@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Textor.GRA.Application.DTOs;
 using Textor.GRA.Application.Services.Base;
 using Textor.GRA.Application.Services.Interfaces;
@@ -28,7 +29,7 @@ namespace Textor.GRA.Application.Services
             StudioReadRepository = studioReadRepository;
         }
 
-        public Response Import(IList<CsvDTO> csv)
+        public async Task<Response> Import(IList<CsvDTO> csv)
         {
             var producers = new List<Producer>();
             var studios = new List<Studio>();
@@ -93,9 +94,9 @@ namespace Textor.GRA.Application.Services
                 movies.Add(movie1);
             }
 
-            var testeProducer = ProducerService.AddRange(producers);
-            var testeStudio = StudioService.AddRange(studios);
-            var testeMovies = MovieService.AddRange(movies);
+            var testeProducer = await ProducerService.AddRange(producers);
+            var testeStudio = await StudioService.AddRange(studios);
+            var testeMovies = await MovieService.AddRange(movies);
 
             return new Response
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities.Interfaces;
 using Textor.GRA.Domain.Framework.Response;
 
@@ -27,9 +28,9 @@ namespace Textor.GRA.Domain.Repositories.Base
 
     public interface IWriteRepository<TEntity> : IWriteRepository, IRepository<TEntity> where TEntity : IEntity
     {
-        Response Add(TEntity entity);
-        Response AddRange(IList<TEntity> entities);
-        Response SaveChanges();
+        Task<Response> Add(TEntity entity);
+        Task<Response> AddRange(IList<TEntity> entities);
+        Task<Response> SaveChanges();
     }
 
     public interface IReadRepository<TEntity> : IReadRepository, IRepository<TEntity> where TEntity : IEntity

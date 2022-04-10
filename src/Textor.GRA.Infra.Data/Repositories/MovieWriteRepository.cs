@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Framework.Response.Enums;
@@ -16,9 +17,9 @@ namespace Textor.GRA.Infra.Data.Repositories
 
         }
 
-        public Response Add(Movie entity)
+        public async Task<Response> Add(Movie entity)
         {
-            Context.Movies.Add(entity);
+            await Context.Movies.AddAsync(entity);
 
             return new Response
             {
@@ -27,9 +28,9 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response AddProducer(MovieProducer producer)
+        public async Task<Response> AddProducer(MovieProducer producer)
         {
-            Context.MovieProducers.Add(producer);
+            await Context.MovieProducers.AddAsync(producer);
 
             return new Response
             {
@@ -38,11 +39,11 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response AddRange(IList<Movie> entities)
+        public async Task<Response> AddRange(IList<Movie> entities)
         {
             var array = entities.ToArray();
 
-            Context.Movies.AddRange(array);
+            await Context.Movies.AddRangeAsync(array);
 
             return new Response
             {
@@ -51,9 +52,9 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response AddStudio(MovieStudio studio)
+        public async Task<Response> AddStudio(MovieStudio studio)
         {
-            Context.MovieStudios.Add(studio);
+            await Context.MovieStudios.AddAsync(studio);
 
             return new Response
             {
@@ -62,9 +63,9 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response SaveChanges()
+        public async Task<Response> SaveChanges()
         {
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
 
             return new Response
             {

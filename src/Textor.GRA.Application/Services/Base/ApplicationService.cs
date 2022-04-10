@@ -6,9 +6,6 @@ namespace Textor.GRA.Application.Services.Base
 {
     public class ApplicationService : IApplicationService
     {
-        public void Dispose()
-        {
-        }
     }
 
     public class ApplicationService<TDomainService, TReadRepository> : IApplicationService<TDomainService, TReadRepository>
@@ -22,11 +19,6 @@ namespace Textor.GRA.Application.Services.Base
         {
             DomainService = domainService;
             Repository = repository;
-        }
-
-        public void Dispose()
-        {
-
         }
     }
 }

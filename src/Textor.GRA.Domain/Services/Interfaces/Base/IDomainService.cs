@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities.Interfaces;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Repositories.Base;
@@ -13,7 +14,7 @@ namespace Textor.GRA.Domain.Services.Interfaces.Base
         where TEntity : IEntity
         where TWriteRepository : IWriteRepository<TEntity>
     {
-        Response Add(TEntity entity);
-        Response AddRange(IList<TEntity> entities);
+        Task<Response> Add(TEntity entity);
+        Task<Response> AddRange(IList<TEntity> entities);
     }
 }

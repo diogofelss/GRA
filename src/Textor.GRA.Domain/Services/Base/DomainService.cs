@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities.Base;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Framework.Response.Enums;
@@ -18,9 +19,9 @@ namespace Textor.GRA.Domain.Services.Base
             Repository = repository;
         }
 
-        public virtual Response Add(TEntity entity)
+        public virtual async Task<Response> Add(TEntity entity)
         {
-            Repository.Add(entity);
+            await Repository.Add(entity);
 
             return new Response
             {
@@ -29,9 +30,9 @@ namespace Textor.GRA.Domain.Services.Base
             };
         }
 
-        public virtual Response AddRange(IList<TEntity> entities)
+        public virtual async Task<Response> AddRange(IList<TEntity> entities)
         {
-            Repository.AddRange(entities);
+            await Repository.AddRange(entities);
 
             return new Response
             {

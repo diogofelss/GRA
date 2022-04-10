@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Repositories;
@@ -17,12 +18,12 @@ namespace Textor.GRA.Domain.Services
             ReadRepository = readRepository;
         }
 
-        public override Response Add(Studio entity)
+        public override async Task<Response> Add(Studio entity)
         {
-            return Repository.Add(entity);
+            return await Repository.Add(entity);
         }
 
-        public override Response AddRange(IList<Studio> entities)
+        public override async Task<Response> AddRange(IList<Studio> entities)
         {
             var registers = new List<Studio>();
 
@@ -32,9 +33,9 @@ namespace Textor.GRA.Domain.Services
                     registers.Add(item);
             }
 
-            var ret1 = base.AddRange(registers);
+            var ret1 = await base.AddRange(registers);
 
-            return Repository.SaveChanges();
+            return await Repository.SaveChanges();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Framework.Response.Enums;
@@ -16,9 +17,9 @@ namespace Textor.GRA.Infra.Data.Repositories
 
         }
 
-        public Response Add(Producer entity)
+        public async Task<Response> Add(Producer entity)
         {
-            Context.Producers.Add(entity);
+            await Context .Producers.AddAsync(entity);
 
             return new Response
             {
@@ -27,11 +28,11 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response AddRange(IList<Producer> entities)
+        public async Task<Response> AddRange(IList<Producer> entities)
         {
             var array = entities.ToArray();
 
-            Context.Producers.AddRange(array);
+            await Context.Producers.AddRangeAsync(array);
 
             return new Response
             {
@@ -40,9 +41,9 @@ namespace Textor.GRA.Infra.Data.Repositories
             };
         }
 
-        public Response SaveChanges()
+        public async Task<Response> SaveChanges()
         {
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
 
             return new Response
             {
