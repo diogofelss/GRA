@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Textor.GRA.Application.DTOs;
 using Textor.GRA.Application.Services.Base;
 using Textor.GRA.Application.Services.Interfaces;
+using Textor.GRA.Application.ViewModels;
 using Textor.GRA.Domain.Entities;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Framework.Response.Enums;
@@ -19,14 +21,32 @@ namespace Textor.GRA.Application.Services
         private readonly IMovieService MovieService;
         private readonly IProducerReadRepository ProducerReadRepository;
         private readonly IStudioReadRepository StudioReadRepository;
+        private readonly IMovieReadRepository MovieReadRepository;
+        private readonly IMapper Mapper;
 
-        public MovieApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository)
+        public MovieApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository, IMovieReadRepository movieReadRepository, IMapper mapper)
         {
             ProducerService = producerService;
             StudioService = studioService;
             MovieService = movieService;
             ProducerReadRepository = producerReadRepository;
             StudioReadRepository = studioReadRepository;
+            MovieReadRepository = movieReadRepository;
+            Mapper = mapper;
+        }
+
+        public MovieResponseViewModel Get()
+        {
+            var result = MovieReadRepository.Get();
+
+            return Mapper.ProjectTo<MovieResponseViewModel>(result).FirstOrDefault();
+        }
+
+        public IList<MovieResponseViewModel> GetAll()
+        {
+            var result = MovieReadRepository.Get();
+
+            return Mapper.ProjectTo<MovieResponseViewModel>(result).ToList();
         }
 
         public async Task<Response> Import(IList<CsvDTO> csv)
