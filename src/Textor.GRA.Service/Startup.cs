@@ -66,7 +66,7 @@ namespace Textor.GRA.Service
             Task.Factory.StartNew(async () =>
             {
                 using var scope = app.ApplicationServices.CreateAsyncScope();
-                var csvApplicationService = scope.ServiceProvider.GetService<IMovieApplicationService>();
+                var csvApplicationService = scope.ServiceProvider.GetService<ICSVApplicationService>();
 
                 var lista = new List<CsvDTO>();
                 using (var reader = new StreamReader(@"C:\Banco de Dados\movielist.csv"))

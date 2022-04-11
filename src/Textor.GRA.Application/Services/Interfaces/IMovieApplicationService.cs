@@ -9,9 +9,9 @@ namespace Textor.GRA.Application.Services.Interfaces
 {
     public interface IMovieApplicationService : IApplicationService
     {
-        Task<Response> Import(IList<CsvDTO> csv);
-        IList<MovieResponseViewModel> GetAll();
-        MovieResponseViewModel Get();
-        ProducerWinnerTimeResponseViewModel GetWinnerTime();
+        IList<MovieResponseViewModel> GetNominated(int year);
+        IList<MovieResponseViewModel> GetWinners(int year);
+        IList<MovieResponseViewModel> GetNominated();
+        IList<MovieResponseViewModel> GetWinners();
     }
 }

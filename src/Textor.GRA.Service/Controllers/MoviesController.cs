@@ -19,30 +19,39 @@ namespace Textor.GRA.Service.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MovieResponseViewModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("first")]
-        public IActionResult First()
+        [Route("{year}/nominated")]
+        public IActionResult GetNominated(int year)
         {
-            return Ok(MovieApplicationService.Get());
+            return Ok(MovieApplicationService.GetNominated(year));
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("")]
-        public IActionResult GetAll()
+        [Route("{year}/winners")]
+        public IActionResult GetWinners(int year)
         {
-            return Ok(MovieApplicationService.GetAll());
+            return Ok(MovieApplicationService.GetWinners(year));
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("winners/time")]
-        public IActionResult GetWinnersTime()
+        [Route("all/nominated")]
+        public IActionResult GetNominated()
         {
-            return Ok(MovieApplicationService.GetWinnerTime());
+            return Ok(MovieApplicationService.GetNominated());
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("all/winners")]
+        public IActionResult GetWinners()
+        {
+            return Ok(MovieApplicationService.GetWinners());
         }
     }
 }

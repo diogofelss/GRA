@@ -29,6 +29,8 @@ namespace Textor.GRA.Infra.CrossCutting.IOC
         private static void ApplicationServices(IServiceCollection services)
         {
             services.AddScoped<IMovieApplicationService, MovieApplicationService>();
+            services.AddScoped<IProducerApplicationService, ProducerApplicationService>();
+            services.AddScoped<ICSVApplicationService, CSVApplicationService>();
         }
 
         private static void DomainServices(IServiceCollection services)
