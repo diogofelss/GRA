@@ -53,6 +53,11 @@ namespace Textor.GRA.Application.Services
 
         public ProducerWinnerTimeResponseViewModel GetWinnerTime()
         {
+            var responseMinNoFilter = new List<ProducerWinnerTimeItemResponseViewModel>();
+            var responseMaxNoFilter = new List<ProducerWinnerTimeItemResponseViewModel>();
+            var minInterval = int.MaxValue;
+            var maxInterval = 0;
+
             var result = ProducerReadRepository.Get().Include(c => c.Movies).ThenInclude(c => c.Movie).ToList();
 
             var group = result.GroupBy(c => c.Name).ToList();
@@ -63,9 +68,38 @@ namespace Textor.GRA.Application.Services
 
                 var min = years.minInterval();
                 var max = years.maxInterval();
+
+                if (min?.Interval < minInterval)
+                {
+                    minInterval = min.Interval;
+
+                    responseMinNoFilter.Add(new ProducerWinnerTimeItemResponseViewModel
+                    {
+                        Producer = list.Key,
+                        Interval = min.Interval,
+                        PreviousWin = min.MinYear,
+                        FollowingWin = min.MaxYear
+                    });
+                }
+                if (max?.Interval > maxInterval)
+                {
+                    maxInterval = max.Interval;
+
+                    responseMaxNoFilter.Add(new ProducerWinnerTimeItemResponseViewModel
+                    {
+                        Producer = list.Key,
+                        Interval = max.Interval,
+                        PreviousWin = max.MinYear,
+                        FollowingWin = max.MaxYear
+                    });
+                }
             }
 
-            return new ProducerWinnerTimeResponseViewModel();
+            var testes = new ProducerWinnerTimeResponseViewModel();
+            testes.Min.AddRange(responseMinNoFilter.Where(c => c.Interval == minInterval).ToList());
+            testes.Max.AddRange(responseMaxNoFilter.Where(c => c.Interval == maxInterval).ToList());
+
+            return testes;
         }
 
         public async Task<Response> Import(IList<CsvDTO> csv)

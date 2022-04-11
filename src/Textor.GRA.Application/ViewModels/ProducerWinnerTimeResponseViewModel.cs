@@ -8,6 +8,12 @@ namespace Textor.GRA.Application.ViewModels
 {
     public class ProducerWinnerTimeResponseViewModel
     {
+        public ProducerWinnerTimeResponseViewModel()
+        {
+            Min = new List<ProducerWinnerTimeItemResponseViewModel>();
+            Max = new List<ProducerWinnerTimeItemResponseViewModel>();
+        }
+
         public IList<ProducerWinnerTimeItemResponseViewModel> Min { get; set; }
         public IList<ProducerWinnerTimeItemResponseViewModel> Max { get; set; }
     }

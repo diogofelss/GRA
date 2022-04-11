@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Textor.GRA.Domain.Framework.Extensions
 {
@@ -11,6 +12,15 @@ namespace Textor.GRA.Domain.Framework.Extensions
 
     public static class EnumarableExtensions
     {
+        public static void AddRange<T>(this ICollection<T> destination,
+                                       IEnumerable<T> source)
+        {
+            foreach (T item in source)
+            {
+                destination.Add(item);
+            }
+        }
+
         public static MoviesIntervalDTO minInterval(this int[] source)
         {
             if (source.Length <= 1)
