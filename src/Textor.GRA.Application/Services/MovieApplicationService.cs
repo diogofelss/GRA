@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Textor.GRA.Application.Services.Base;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
 using Textor.GRA.Domain.Entities;
+using Textor.GRA.Domain.Framework.Extensions;
 using Textor.GRA.Domain.Framework.Response;
 using Textor.GRA.Domain.Framework.Response.Enums;
 using Textor.GRA.Domain.Repositories;
@@ -51,12 +53,17 @@ namespace Textor.GRA.Application.Services
 
         public ProducerWinnerTimeResponseViewModel GetWinnerTime()
         {
-            var result = MovieReadRepository.Get(c=> c.Winner == true).Select(c => new {
-                Producer = c.Producers.Select(c => c.Producer),
-                Year = c.Year
-            });
+            var result = ProducerReadRepository.Get().Include(c => c.Movies).ThenInclude(c => c.Movie).ToList();
 
-            var map = Mapper.ProjectTo<TempViewModel>(result).ToList();
+            var group = result.GroupBy(c => c.Name).ToList();
+
+            foreach (var list in group)
+            {
+                var years = list.Select(c => c.Movies.Select(c=> c.Movie.Year).First()).ToArray();
+
+                var min = years.minInterval();
+                var max = years.maxInterval();
+            }
 
             return new ProducerWinnerTimeResponseViewModel();
         }
