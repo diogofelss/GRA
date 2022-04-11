@@ -71,7 +71,8 @@ namespace Textor.GRA.Application.Services
 
                 if (min?.Interval < minInterval)
                 {
-                    minInterval = min.Interval;
+                    if (min.Interval > 0)
+                        minInterval = min.Interval;
 
                     responseMinNoFilter.Add(new ProducerWinnerTimeItemResponseViewModel
                     {

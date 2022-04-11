@@ -10,7 +10,7 @@ namespace Textor.GRA.Domain.Framework.Extensions
         public int Interval { get; set; }
     }
 
-    public static class EnumarableExtensions
+    public static class EnumerableExtensions
     {
         public static void AddRange<T>(this ICollection<T> destination,
                                        IEnumerable<T> source)

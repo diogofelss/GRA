@@ -6,9 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Textor.GRA.Application.DTOs;
 using Textor.GRA.Application.Services.Interfaces;
+using Textor.GRA.Domain.Framework.Extensions;
 using Textor.GRA.Infra.CrossCutting.IOC;
 using Textor.GRA.Infra.Data.Context;
 
@@ -66,38 +68,37 @@ namespace Textor.GRA.Service
                 using var scope = app.ApplicationServices.CreateAsyncScope();
                 var csvApplicationService = scope.ServiceProvider.GetService<IMovieApplicationService>();
 
-                var movie1 = new CsvDTO
+                var lista = new List<CsvDTO>();
+                using (var reader = new StreamReader(@"C:\Banco de Dados\movielist.csv"))
                 {
-                    Year = 1980,
-                    Title = "Can't Stop the Music",
-                    Studios = "Universal Studios, Associated Film Distribution",
-                    Producers = "Kevin Costner, Lawrence Kasdan and Steve Shagan"
-                };
+                    List<string> listA = new List<string>();
+                    List<string> listB = new List<string>();
 
-                var movie2 = new CsvDTO
-                {
-                    Year = 1991,
-                    Title = "Cruising",
-                    Studios = "Lorimar Productions, United Artists",
-                    Producers = "Jerry Weintraub, Lawrence Kasdan"
-                };
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        var values = line.Split(';');
 
-                var movie3 = new CsvDTO
-                {
-                    Year = 1992,
-                    Title = "The Formula",
-                    Studios = "MGM, United Artists",
-                    Producers = "Steve Shagan, Lawrence Kasdan"
-                };
+                        if (!int.TryParse(values[0], out int integer))
+                            continue;
 
-                var list = new List<CsvDTO>
-                {
-                    movie1,
-                    movie2,
-                    movie3
-                };
+                        listA.Add(values[0]);
+                        listB.Add(values[1]);
 
-                await csvApplicationService.Import(list);
+                        var csvLine = new CsvDTO
+                        {
+                            Year = values[0].ToInt32(),
+                            Title = values[1],
+                            Studios = values[2],
+                            Producers = values[3],
+                            Winner = values[4] == "yes"
+                        };
+
+                        lista.Add(csvLine);
+                    }
+                }
+
+                await csvApplicationService.Import(lista);
             });
         }
     }
