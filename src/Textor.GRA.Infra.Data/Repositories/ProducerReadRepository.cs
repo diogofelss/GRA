@@ -24,5 +24,10 @@ namespace Textor.GRA.Infra.Data.Repositories
         {
             return Context.Producers.Where(predicate);
         }
+
+        public IQueryable<Producer> Sql(string query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

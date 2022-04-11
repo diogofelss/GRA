@@ -35,5 +35,14 @@ namespace Textor.GRA.Service.Controllers
         {
             return Ok(MovieApplicationService.GetAll());
         }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("winners/time")]
+        public IActionResult GetWinnersTime()
+        {
+            return Ok(MovieApplicationService.GetWinnerTime());
+        }
     }
 }

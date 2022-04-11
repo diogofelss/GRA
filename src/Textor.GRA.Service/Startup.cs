@@ -71,23 +71,23 @@ namespace Textor.GRA.Service
                     Year = 1980,
                     Title = "Can't Stop the Music",
                     Studios = "Universal Studios, Associated Film Distribution",
-                    Producers = "Kevin Costner, Lawrence Kasdan and Jim Wilson"
+                    Producers = "Kevin Costner, Lawrence Kasdan and Steve Shagan"
                 };
 
                 var movie2 = new CsvDTO
                 {
-                    Year = 1980,
+                    Year = 1991,
                     Title = "Cruising",
                     Studios = "Lorimar Productions, United Artists",
-                    Producers = "Jerry Weintraub"
+                    Producers = "Jerry Weintraub, Lawrence Kasdan"
                 };
 
                 var movie3 = new CsvDTO
                 {
-                    Year = 1980,
+                    Year = 1992,
                     Title = "The Formula",
                     Studios = "MGM, United Artists",
-                    Producers = "Steve Shagan"
+                    Producers = "Steve Shagan, Lawrence Kasdan"
                 };
 
                 var list = new List<CsvDTO>

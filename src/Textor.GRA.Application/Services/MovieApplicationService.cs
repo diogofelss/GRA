@@ -49,6 +49,18 @@ namespace Textor.GRA.Application.Services
             return Mapper.ProjectTo<MovieResponseViewModel>(result).ToList();
         }
 
+        public ProducerWinnerTimeResponseViewModel GetWinnerTime()
+        {
+            var result = MovieReadRepository.Get(c=> c.Winner == true).Select(c => new {
+                Producer = c.Producers.Select(c => c.Producer),
+                Year = c.Year
+            });
+
+            var map = Mapper.ProjectTo<TempViewModel>(result).ToList();
+
+            return new ProducerWinnerTimeResponseViewModel();
+        }
+
         public async Task<Response> Import(IList<CsvDTO> csv)
         {
             var producers = new List<Producer>();

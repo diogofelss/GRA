@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 using Textor.GRA.Domain.Entities;
@@ -22,6 +23,11 @@ namespace Textor.GRA.Infra.Data.Repositories
         public IQueryable<Movie> Get(Expression<Func<Movie, bool>> predicate)
         {
             return Context.Movies.Where(predicate);
+        }
+
+        public IQueryable<Movie> Sql(string query)
+        {
+            return Context.Movies.FromSqlRaw(query);
         }
     }
 }

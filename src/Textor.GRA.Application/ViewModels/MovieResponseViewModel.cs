@@ -23,4 +23,10 @@ namespace Textor.GRA.Application.ViewModels
     {
         public string Name { get; set; }
     }
+
+    public class TempViewModel
+    {
+        public string Producer { get; set; }
+        public int Year { get; set; }
+    }
 }

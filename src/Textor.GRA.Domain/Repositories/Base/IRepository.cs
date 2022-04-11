@@ -37,5 +37,6 @@ namespace Textor.GRA.Domain.Repositories.Base
     {
         IQueryable<TEntity> Get();
         IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Sql(string query);
     }
 }

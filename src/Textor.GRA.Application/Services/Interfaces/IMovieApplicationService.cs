@@ -12,5 +12,6 @@ namespace Textor.GRA.Application.Services.Interfaces
         Task<Response> Import(IList<CsvDTO> csv);
         IList<MovieResponseViewModel> GetAll();
         MovieResponseViewModel Get();
+        ProducerWinnerTimeResponseViewModel GetWinnerTime();
     }
 }
