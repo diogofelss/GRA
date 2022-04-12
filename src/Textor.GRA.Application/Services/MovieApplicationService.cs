@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Textor.GRA.Application.DTOs;
 using Textor.GRA.Application.Services.Base;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
-using Textor.GRA.Domain.Entities;
-using Textor.GRA.Domain.Framework.Extensions;
-using Textor.GRA.Domain.Framework.Response;
-using Textor.GRA.Domain.Framework.Response.Enums;
 using Textor.GRA.Domain.Repositories;
-using Textor.GRA.Domain.Services.Interfaces;
 
 namespace Textor.GRA.Application.Services
 {

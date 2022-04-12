@@ -1,5 +1,4 @@
-﻿using System;
-using Textor.GRA.Domain.Repositories.Base;
+﻿using Textor.GRA.Domain.Repositories.Base;
 using Textor.GRA.Domain.Services.Interfaces.Base;
 
 namespace Textor.GRA.Application.Services.Interfaces.Base

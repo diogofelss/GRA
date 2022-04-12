@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
 

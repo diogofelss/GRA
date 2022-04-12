@@ -33,7 +33,7 @@ namespace Textor.GRA.Domain.Framework.Extensions
 
             Array.Sort(source);
 
-            for(int i = 0; i < lenght -1; i++)
+            for (int i = 0; i < lenght - 1; i++)
             {
                 if (source[i + 1] - source[i] < diff)
                 {
@@ -63,7 +63,7 @@ namespace Textor.GRA.Domain.Framework.Extensions
 
             Array.Sort(source);
 
-            for (int i = 0; i < lenght -1; i++)
+            for (int i = 0; i < lenght - 1; i++)
             {
                 if (source[i + 1] - source[i] > diff)
                 {

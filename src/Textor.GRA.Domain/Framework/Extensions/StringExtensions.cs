@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Textor.GRA.Domain.Framework.Extensions
+﻿namespace Textor.GRA.Domain.Framework.Extensions
 {
     public static class StringExtensions
     {

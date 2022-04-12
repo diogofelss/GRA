@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
 using Textor.GRA.Service.Controllers;
@@ -14,7 +9,7 @@ namespace Textor.GRA.Integration.Test
     public class ProducersControllerTests
     {
         [Fact]
-        public void MoviesController_ReturnOkWinnersInterval()
+        public void ProducersController_ReturnOkWinnersInterval()
         {
             var item = new ProducerWinnerTimeResponseViewModel();
             item.Max.Add(new ProducerWinnerTimeItemResponseViewModel
@@ -47,7 +42,7 @@ namespace Textor.GRA.Integration.Test
         }
 
         [Fact]
-        public void MoviesController_ReturnOkWinnersOnlyMinInterval()
+        public void ProducersController_ReturnNotFoundWinnersOnlyMinInterval()
         {
             var item = new ProducerWinnerTimeResponseViewModel();
             item.Min.Add(new ProducerWinnerTimeItemResponseViewModel
@@ -65,15 +60,11 @@ namespace Textor.GRA.Integration.Test
 
             var response = controller.GetInterval();
 
-            var okResult = Assert.IsType<OkObjectResult>(response);
-            var list = Assert.IsType<ProducerWinnerTimeResponseViewModel>(okResult.Value);
-
-            Assert.Single(list.Min);
-            Assert.Empty(list.Max);
+            Assert.IsType<NotFoundResult>(response);
         }
 
         [Fact]
-        public void MoviesController_ReturnOkWinnersOnlyMaxInterval()
+        public void ProducersController_ReturnNotFoundWinnersOnlyMaxInterval()
         {
             var item = new ProducerWinnerTimeResponseViewModel();
             item.Max.Add(new ProducerWinnerTimeItemResponseViewModel
@@ -91,15 +82,11 @@ namespace Textor.GRA.Integration.Test
 
             var response = controller.GetInterval();
 
-            var okResult = Assert.IsType<OkObjectResult>(response);
-            var list = Assert.IsType<ProducerWinnerTimeResponseViewModel>(okResult.Value);
-
-            Assert.Single(list.Max);
-            Assert.Empty(list.Min);
+            Assert.IsType<NotFoundResult>(response);
         }
 
         [Fact]
-        public void MoviesController_ReturnNotFoundWinnersInterval()
+        public void ProducersController_ReturnNotFoundWinnersInterval()
         {
             var item = new ProducerWinnerTimeResponseViewModel();
             Moq.Mock<IProducerApplicationService> service = new();

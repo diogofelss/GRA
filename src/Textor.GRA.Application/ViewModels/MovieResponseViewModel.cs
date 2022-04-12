@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Textor.GRA.Application.ViewModels
 {
     public class MovieResponseViewModel
     {
-        public string Title { get;set; }
+        public string Title { get; set; }
         public int Year { get; set; }
         public bool Winner { get; set; }
         public IList<MovieStudioResponseViewModel> Studios { get; set; }

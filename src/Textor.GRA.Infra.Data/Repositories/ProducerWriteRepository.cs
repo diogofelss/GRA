@@ -19,7 +19,7 @@ namespace Textor.GRA.Infra.Data.Repositories
 
         public async Task<Response> Add(Producer entity)
         {
-            await Context .Producers.AddAsync(entity);
+            await Context.Producers.AddAsync(entity);
 
             return new Response
             {
