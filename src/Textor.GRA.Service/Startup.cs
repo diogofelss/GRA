@@ -72,6 +72,10 @@ namespace Textor.GRA.Service
                 var lista = new List<CsvDTO>();
 
                 var csvPath = Configuration.GetSection("CSV").GetValue(typeof(string),"Path").ToString();
+
+                if (!File.Exists(csvPath))
+                    return;
+
                 using (var reader = new StreamReader(csvPath))
                 {
                     List<string> listA = new();
