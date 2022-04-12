@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
@@ -19,12 +20,17 @@ namespace Textor.GRA.Service.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<MovieResponseViewModel>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProducerWinnerTimeResponseViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [Route("winners/interval")]
         public IActionResult GetInterval()
         {
-            return Ok(ProducerApplicationService.GetInterval());
+            var result = ProducerApplicationService.GetInterval();
+
+            if (result.Max.Any() || result.Min.Any())
+                return Ok(result);
+
+            return NotFound();
         }
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Textor.GRA.Application.Services.Interfaces;
 using Textor.GRA.Application.ViewModels;
@@ -24,7 +25,12 @@ namespace Textor.GRA.Service.Controllers
         [Route("{year}/nominated")]
         public IActionResult GetNominated(int year)
         {
-            return Ok(MovieApplicationService.GetNominated(year));
+            var result = MovieApplicationService.GetNominated(year);
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         [HttpGet]
@@ -33,7 +39,12 @@ namespace Textor.GRA.Service.Controllers
         [Route("{year}/winners")]
         public IActionResult GetWinners(int year)
         {
-            return Ok(MovieApplicationService.GetWinners(year));
+            var result = MovieApplicationService.GetWinners(year);
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         [HttpGet]
@@ -42,7 +53,12 @@ namespace Textor.GRA.Service.Controllers
         [Route("all/nominated")]
         public IActionResult GetNominated()
         {
-            return Ok(MovieApplicationService.GetNominated());
+            var result = MovieApplicationService.GetNominated();
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
 
         [HttpGet]
@@ -51,7 +67,12 @@ namespace Textor.GRA.Service.Controllers
         [Route("all/winners")]
         public IActionResult GetWinners()
         {
-            return Ok(MovieApplicationService.GetWinners());
+            var result = MovieApplicationService.GetWinners();
+
+            if (result.Any())
+                return Ok(result);
+
+            return NotFound();
         }
     }
 }

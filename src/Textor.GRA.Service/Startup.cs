@@ -71,8 +71,8 @@ namespace Textor.GRA.Service
                 var lista = new List<CsvDTO>();
                 using (var reader = new StreamReader(@"C:\Banco de Dados\movielist.csv"))
                 {
-                    List<string> listA = new List<string>();
-                    List<string> listB = new List<string>();
+                    List<string> listA = new();
+                    List<string> listB = new();
 
                     string line;
                     while ((line = reader.ReadLine()) != null)

@@ -35,8 +35,8 @@ namespace Textor.GRA.Application.Services
             {
                 var years = list.Select(c => c.Movies.Select(c => c.Movie.Year).First()).ToArray();
 
-                var min = years.minInterval();
-                var max = years.maxInterval();
+                var min = years.MinInterval();
+                var max = years.MaxInterval();
 
                 if (min?.Interval < minInterval)
                 {

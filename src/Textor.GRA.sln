@@ -23,11 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Test", "5 - Test", "{32
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Textor.GRA.Domain", "Textor.GRA.Domain\Textor.GRA.Domain.csproj", "{CB37E02E-3BF6-46E0-A2D1-65FE0E8442D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textor.GRA.Application", "Textor.GRA.Application\Textor.GRA.Application.csproj", "{84EC5891-7CD7-4D26-8EAB-DD87F38020F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Textor.GRA.Application", "Textor.GRA.Application\Textor.GRA.Application.csproj", "{84EC5891-7CD7-4D26-8EAB-DD87F38020F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textor.GRA.Infra.Data", "Textor.GRA.Infra.Data\Textor.GRA.Infra.Data.csproj", "{D7108D51-5A40-44F1-B468-D44CDFA105D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Textor.GRA.Infra.Data", "Textor.GRA.Infra.Data\Textor.GRA.Infra.Data.csproj", "{D7108D51-5A40-44F1-B468-D44CDFA105D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textor.GRA.Infra.CrossCutting.IOC", "Textor.GRA.Infra.CrossCutting.IOC\Textor.GRA.Infra.CrossCutting.IOC.csproj", "{667F01E1-C098-421D-9D3F-8CD7B5244243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Textor.GRA.Infra.CrossCutting.IOC", "Textor.GRA.Infra.CrossCutting.IOC\Textor.GRA.Infra.CrossCutting.IOC.csproj", "{667F01E1-C098-421D-9D3F-8CD7B5244243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Textor.GRA.Integration.Test", "..\tests\Textor.GRA.Tests\Textor.GRA.Integration.Test\Textor.GRA.Integration.Test.csproj", "{9F7BD04B-681A-49DB-BAC3-320FB24A38FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{667F01E1-C098-421D-9D3F-8CD7B5244243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667F01E1-C098-421D-9D3F-8CD7B5244243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667F01E1-C098-421D-9D3F-8CD7B5244243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7BD04B-681A-49DB-BAC3-320FB24A38FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7BD04B-681A-49DB-BAC3-320FB24A38FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7BD04B-681A-49DB-BAC3-320FB24A38FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7BD04B-681A-49DB-BAC3-320FB24A38FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{84EC5891-7CD7-4D26-8EAB-DD87F38020F8} = {4C01BD2C-6699-44FE-8F5A-42DACFEA3537}
 		{D7108D51-5A40-44F1-B468-D44CDFA105D7} = {7DDFD200-B962-4416-A489-A31D9D66FD1A}
 		{667F01E1-C098-421D-9D3F-8CD7B5244243} = {C0E42603-E3FB-46A8-8CA5-9DB6FA35E5A0}
+		{9F7BD04B-681A-49DB-BAC3-320FB24A38FD} = {3214C1D5-08B2-46F2-B213-41B7DB5055A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EF99DC0-BE92-4B81-ADB4-3942A20A4067}

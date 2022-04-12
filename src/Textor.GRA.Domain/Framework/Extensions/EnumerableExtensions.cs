@@ -21,7 +21,7 @@ namespace Textor.GRA.Domain.Framework.Extensions
             }
         }
 
-        public static MoviesIntervalDTO minInterval(this int[] source)
+        public static MoviesIntervalDTO MinInterval(this int[] source)
         {
             if (source.Length <= 1)
                 return null;
@@ -51,7 +51,7 @@ namespace Textor.GRA.Domain.Framework.Extensions
             };
         }
 
-        public static MoviesIntervalDTO maxInterval(this int[] source)
+        public static MoviesIntervalDTO MaxInterval(this int[] source)
         {
             if (source.Length <= 1)
                 return null;

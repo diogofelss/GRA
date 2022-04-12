@@ -20,16 +20,14 @@ namespace Textor.GRA.Application.Services
         private readonly IMovieService MovieService;
         private readonly IProducerReadRepository ProducerReadRepository;
         private readonly IStudioReadRepository StudioReadRepository;
-        private readonly IMovieReadRepository MovieReadRepository;
 
-        public CSVApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository, IMovieReadRepository movieReadRepository)
+        public CSVApplicationService(IProducerService producerService, IStudioService studioService, IMovieService movieService, IProducerReadRepository producerReadRepository, IStudioReadRepository studioReadRepository)
         {
             ProducerService = producerService;
             StudioService = studioService;
             MovieService = movieService;
             ProducerReadRepository = producerReadRepository;
             StudioReadRepository = studioReadRepository;
-            MovieReadRepository = movieReadRepository;
         }
 
         public async Task<Response> Import(IList<CsvDTO> csv)
