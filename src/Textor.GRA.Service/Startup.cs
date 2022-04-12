@@ -28,7 +28,8 @@ namespace Textor.GRA.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GeneralContext>(opt => opt.UseSqlite(@"Data Source=Banco.db"));
+            var dataBase = Configuration.GetConnectionString("Default");
+            services.AddDbContext<GeneralContext>(opt => opt.UseSqlite(dataBase));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,7 +62,7 @@ namespace Textor.GRA.Service
             ImportarExcel(app);
         }
 
-        private static void ImportarExcel(IApplicationBuilder app)
+        private void ImportarExcel(IApplicationBuilder app)
         {
             Task.Factory.StartNew(async () =>
             {
@@ -69,7 +70,9 @@ namespace Textor.GRA.Service
                 var csvApplicationService = scope.ServiceProvider.GetService<ICSVApplicationService>();
 
                 var lista = new List<CsvDTO>();
-                using (var reader = new StreamReader(@"C:\Banco de Dados\movielist.csv"))
+
+                var csvPath = Configuration.GetSection("CSV").GetValue(typeof(string),"Path").ToString();
+                using (var reader = new StreamReader(csvPath))
                 {
                     List<string> listA = new();
                     List<string> listB = new();
