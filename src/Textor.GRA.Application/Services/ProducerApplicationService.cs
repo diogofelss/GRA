@@ -11,10 +11,12 @@ namespace Textor.GRA.Application.Services
     public class ProducerApplicationService : IProducerApplicationService
     {
         private readonly IProducerReadRepository ProducerReadRepository;
+        private readonly IMovieReadRepository MovieReadRepository;
 
-        public ProducerApplicationService(IProducerReadRepository producerReadRepository)
+        public ProducerApplicationService(IProducerReadRepository producerReadRepository, IMovieReadRepository movieReadRepository)
         {
             ProducerReadRepository = producerReadRepository;
+            MovieReadRepository = movieReadRepository;
         }
 
         public ProducerWinnerTimeResponseViewModel GetInterval()
@@ -24,13 +26,15 @@ namespace Textor.GRA.Application.Services
             var minInterval = int.MaxValue;
             var maxInterval = 0;
 
-            var result = ProducerReadRepository.Get().Include(c => c.Movies).ThenInclude(c => c.Movie).ToList();
+            var list = ProducerReadRepository.GetInterval().ToList();
 
-            var group = result.GroupBy(c => c.Name).ToList();
+            var group = list.GroupBy(c => c.ID);
 
-            foreach (var list in group)
+            foreach (var item in group)
             {
-                var years = list.Select(c => c.Movies.Select(c => c.Movie.Year).First()).ToArray();
+                var years = ProducerReadRepository.GetMovieProducers()
+                    .Where(c => c.ProducerID == item.Key && c.Movie.Winner)
+                    .Select(c => c.Movie.Year).ToList();
 
                 var min = years.MinInterval();
                 var max = years.MaxInterval();
@@ -42,7 +46,7 @@ namespace Textor.GRA.Application.Services
 
                     responseMinNoFilter.Add(new ProducerWinnerTimeItemResponseViewModel
                     {
-                        Producer = list.Key,
+                        Producer = item.Select(c => c.Name).First(),
                         Interval = min.Interval,
                         PreviousWin = min.MinYear,
                         FollowingWin = min.MaxYear
@@ -54,7 +58,7 @@ namespace Textor.GRA.Application.Services
 
                     responseMaxNoFilter.Add(new ProducerWinnerTimeItemResponseViewModel
                     {
-                        Producer = list.Key,
+                        Producer = item.Select(c => c.Name).First(),
                         Interval = max.Interval,
                         PreviousWin = max.MinYear,
                         FollowingWin = max.MaxYear
