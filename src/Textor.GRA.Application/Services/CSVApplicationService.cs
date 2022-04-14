@@ -55,6 +55,10 @@ namespace Textor.GRA.Application.Services
                         movie1.AddProducer(ProducerReadRepository.Get(c => c.Name == nome)
                             .Select(c => c.ID).First());
                     }
+                    else if (producers.Any(c => c.Name == nome))
+                    {
+                        movie1.AddProducer(producers.Where(c => c.Name == nome).Select(c => c.ID).First());
+                    }
                     else
                     {
                         var producer = new Producer
@@ -76,6 +80,11 @@ namespace Textor.GRA.Application.Services
                     if (StudioReadRepository.Get(c => c.Name == nome).Any())
                     {
                         movie1.AddStudio(StudioReadRepository.Get(c => c.Name == nome)
+                            .Select(c => c.ID).First());
+                    }
+                    else if (studios.Any(c => c.Name == nome))
+                    {
+                        movie1.AddStudio(studios.Where(c => c.Name == nome)
                             .Select(c => c.ID).First());
                     }
                     else

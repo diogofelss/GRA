@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Textor.GRA.Domain.Framework.Extensions
 {
@@ -21,25 +22,26 @@ namespace Textor.GRA.Domain.Framework.Extensions
             }
         }
 
-        public static MoviesIntervalDTO MinInterval(this int[] source)
+        public static MoviesIntervalDTO MinInterval(this IEnumerable<int> source)
         {
-            if (source.Length <= 1)
+            var sourceArray = source.ToArray();
+            if (sourceArray.Length <= 1)
                 return null;
 
             int diff = int.MaxValue;
             var minValue = 0;
             var maxValue = 1;
-            var lenght = source.Length;
+            var lenght = sourceArray.Length;
 
-            Array.Sort(source);
+            Array.Sort(sourceArray);
 
             for (int i = 0; i < lenght - 1; i++)
             {
-                if (source[i + 1] - source[i] < diff)
+                if (sourceArray[i + 1] - sourceArray[i] < diff)
                 {
-                    diff = source[i + 1] - source[i];
-                    minValue = source[i];
-                    maxValue = source[i + 1];
+                    diff = sourceArray[i + 1] - sourceArray[i];
+                    minValue = sourceArray[i];
+                    maxValue = sourceArray[i + 1];
                 }
             }
 
@@ -51,25 +53,26 @@ namespace Textor.GRA.Domain.Framework.Extensions
             };
         }
 
-        public static MoviesIntervalDTO MaxInterval(this int[] source)
+        public static MoviesIntervalDTO MaxInterval(this IEnumerable<int> source)
         {
-            if (source.Length <= 1)
+            var sourceArray = source.ToArray();
+            if (sourceArray.Length <= 1)
                 return null;
 
             int diff = 0;
             var minValue = 0;
             var maxValue = 1;
-            var lenght = source.Length;
+            var lenght = sourceArray.Length;
 
-            Array.Sort(source);
+            Array.Sort(sourceArray);
 
             for (int i = 0; i < lenght - 1; i++)
             {
-                if (source[i + 1] - source[i] > diff)
+                if (sourceArray[i + 1] - sourceArray[i] > diff)
                 {
-                    diff = source[i + 1] - source[i];
-                    minValue = source[i];
-                    maxValue = source[i + 1];
+                    diff = sourceArray[i + 1] - sourceArray[i];
+                    minValue = sourceArray[i];
+                    maxValue = sourceArray[i + 1];
                 }
             }
 
